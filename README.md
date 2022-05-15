@@ -1,1 +1,0 @@
-# supragya.github.io
