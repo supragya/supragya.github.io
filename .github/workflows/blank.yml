@@ -14,6 +14,14 @@ jobs:
         with:
           submodules: true  # Fetch Hugo themes (true OR recursive)
           fetch-depth: 0    # Fetch all history for .GitInfo and .Lastmod
+      
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+      
+      - name: Install PostCSS
+        run: npm i -D postcss postcss-cli autoprefixer
 
       - name: Setup Hugo
         uses: peaceiris/actions-hugo@v2
@@ -22,7 +30,7 @@ jobs:
           # extended: true
 
       - name: Install dart-sass
-        run: snap install dart-sass
+        run: sudo snap install dart-sass
 
       - name: Build
         run: hugo --minify
