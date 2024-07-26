@@ -4,7 +4,7 @@ enableGitInfo = true
 enableRobotsTXT = true
 hasCJKLanguage = true
 languageCode = "en"
-paginate = 5
+paginate = 15
 rssLimit = 10
 theme = "hugo-texify3"
 title = "Supragya Raj"
@@ -26,53 +26,24 @@ customJS = []
 dateFormat = "2 January 2006"
 emphasisWithDots = true
 toc = true
-rootFontSize = "100%"
+rootFontSize = "105%"
 math = true
 enableDuckDuckGoSearchBox = true
 numberedSubtitles = true
 
-#   [params.commentEngine]
-#   code = """
-#   <script src="https://giscus.app/client.js"
-#         data-repo="michaelneuper/hugo-texify3"
-#         data-repo-id="R_kgDOIjPNaQ"
-#         data-category="General"
-#         data-category-id="DIC_kwDOIjPNac4CaklA"
-#         data-mapping="pathname"
-#         data-strict="0"
-#         data-reactions-enabled="1"
-#         data-emit-metadata="0"
-#         data-input-position="top"
-#         data-theme=""
-#         data-lang="en"
-#         data-loading="lazy"
-#         crossorigin="anonymous"
-#         async>
-#   </script>
-#   """
+  [params.commentEngine]
+  code = """"""
 
-#   [params.buymeacoffee]
-#   code = """
-#   <script async data-name="BMC-Widget" 
-#         data-cfasync="true" 
-#         src="https://cdnjs.buymeacoffee.com/1.0.0/widget.prod.min.js" 
-#         data-id="michaelneuper" 
-#         data-description="Like what I do? Buy me a coffee!" 
-#         data-message="" 
-#         data-color="#d79921" 
-#         data-position="Right" 
-#         data-x_margin="18" 
-#         data-y_margin="18"
-#         crossorigin="anonymous">
-#   </script>
-#   """
+  [params.buymeacoffee]
+  code = """
+  """
 
   [params.sharingbuttons]
-#   facebook = true
+  facebook = false
   twitter = true
-  email = true
+  email = false
   linkedin = true
   reddit = true
-#   whatsapp = true
-#   hackernews = true
-#   telegram = true
+  whatsapp = false
+  hackernews = false
+  telegram = true

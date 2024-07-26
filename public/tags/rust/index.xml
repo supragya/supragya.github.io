@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Supragya Raj</title>
-    <link>http://localhost:1313/</link>
-    <description>Recent content on Supragya Raj</description>
+    <title>Rust on Supragya Raj</title>
+    <link>http://localhost:1313/tags/rust/</link>
+    <description>Recent content in Rust on Supragya Raj</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <managingEditor>supragyaraj&#43;sgh@gmail.com (Supragya Raj)</managingEditor>
-    <webMaster>supragyaraj&#43;sgh@gmail.com (Supragya Raj)</webMaster><atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+    <webMaster>supragyaraj&#43;sgh@gmail.com (Supragya Raj)</webMaster>
+    <lastBuildDate>Fri, 26 Jul 2024 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/tags/rust/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Graph and Trees in rust</title>
       <link>http://localhost:1313/posts/writing-graph-trees/</link>

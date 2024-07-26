@@ -1,4 +1,6 @@
-Low level systems, Web3 and succinct arguments of knowledge interest me a lot!
+Distributed systems (with adverserial actors) and verifiable compute piques my interest. I love being quite close to hardware!
+
+These days, I've been coding, mostly in 🦀 Rust, and practicing some abstract math ✎ᝰ. on the side.
 
 Please see my [writings](/posts) or select one of the tags on the right.  
 
@@ -17,7 +19,6 @@ You may wish to see my code, in which case, have a look at these:
 Some other repositories of interest would be [HLang](https://github.com/supragya/HLang), [gograph](https://github.com/supragya/gograph), [WireHairExperiments](https://github.com/supragya/ErasureCodes), [DirSync](https://github.com/supragya/DirectorySync)
 
 <hr>
-These days, I've been coding, mostly in 🦀 Rust, and practicing some abstract math ✎ᝰ. on the side.
 
 ---
 
