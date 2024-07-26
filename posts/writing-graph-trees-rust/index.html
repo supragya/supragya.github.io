@@ -10,7 +10,7 @@
 
   
   
-  <meta name="description" content="Red-Black Trees for efficient binary search">
+  <meta name="description" content="How to write code for graph and trees in rust for interviews">
   
 
   
@@ -47,30 +47,30 @@
     
 
   
-  <meta property="og:url" content="http://localhost:1313/posts/first-post/">
+  <meta property="og:url" content="http://localhost:1313/posts/writing-graph-trees-rust/">
   <meta property="og:site_name" content="Supragya Raj">
-  <meta property="og:title" content="Red-Black Trees for efficient binary search">
-  <meta property="og:description" content="Red-Black Trees for efficient binary search">
+  <meta property="og:title" content="Graph and Trees in rust">
+  <meta property="og:description" content="How to write code for graph and trees in rust for interviews">
   <meta property="og:locale" content="en">
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
     <meta property="article:published_time" content="2024-07-26T00:00:00+00:00">
-    <meta property="article:modified_time" content="2024-07-25T22:56:07+05:30">
+    <meta property="article:modified_time" content="2024-07-26T00:00:00+00:00">
     <meta property="article:tag" content="Data_structures">
     <meta property="article:tag" content="Rust">
 
 
   
-  <link rel="canonical" href="http://localhost:1313/posts/first-post/">
+  <link rel="canonical" href="http://localhost:1313/posts/writing-graph-trees-rust/">
 
   
   
   
-  <meta itemprop="name" content="Red-Black Trees for efficient binary search">
-  <meta itemprop="description" content="Red-Black Trees for efficient binary search">
+  <meta itemprop="name" content="Graph and Trees in rust">
+  <meta itemprop="description" content="How to write code for graph and trees in rust for interviews">
   <meta itemprop="datePublished" content="2024-07-26T00:00:00+00:00">
-  <meta itemprop="dateModified" content="2024-07-25T22:56:07+05:30">
-  <meta itemprop="wordCount" content="1">
+  <meta itemprop="dateModified" content="2024-07-26T00:00:00+00:00">
+  <meta itemprop="wordCount" content="399">
   <meta itemprop="keywords" content="Data_structures,Rust">
 
   
@@ -81,19 +81,19 @@
 
   
   
-    <link rel="stylesheet" href="/css/content.min.ba38eba94cb47fef9936258c42d11ff19fa9686a30b38e783773fe3f15eb44dc.css" integrity="sha256-ujjrqUy0f&#43;&#43;ZNiWMQtEf8Z&#43;paGows454N3P&#43;PxXrRNw=" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/content.min.6d18cae898ae264c1348434ee64812503248c96811ab6e2d8471e428b75df1bd.css" integrity="sha256-bRjK6JiuJkwTSENO5kgSUDJIyWgRq24thHHkKLdd8b0=" crossorigin="anonymous">
   
 
   
   
-  <title>Red-Black Trees for efficient binary search - Supragya Raj</title>
+  <title>Graph and Trees in rust - Supragya Raj</title>
   
 
   
   
   <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="Red-Black Trees for efficient binary search">
-  <meta name="twitter:description" content="Red-Black Trees for efficient binary search">
+  <meta name="twitter:title" content="Graph and Trees in rust">
+  <meta name="twitter:description" content="How to write code for graph and trees in rust for interviews">
 
 
   
@@ -154,7 +154,7 @@
 <main id="main" class="post">
   
   <div class="post-heading">
-    <h1 class="post-title">Red-Black Trees for efficient binary search</h1>
+    <h1 class="post-title">Graph and Trees in rust</h1>
     <div class="publish-metadata">
       
       <svg width="0.75em" height="0.75em" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -168,7 +168,7 @@
           <svg width="0.75em" height="0.75em" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M15.4998 5.49994L18.3282 8.32837M3 20.9997L3.04745 20.6675C3.21536 19.4922 3.29932 18.9045 3.49029 18.3558C3.65975 17.8689 3.89124 17.4059 4.17906 16.9783C4.50341 16.4963 4.92319 16.0765 5.76274 15.237L17.4107 3.58896C18.1918 2.80791 19.4581 2.80791 20.2392 3.58896C21.0202 4.37001 21.0202 5.63634 20.2392 6.41739L8.37744 18.2791C7.61579 19.0408 7.23497 19.4216 6.8012 19.7244C6.41618 19.9932 6.00093 20.2159 5.56398 20.3879C5.07171 20.5817 4.54375 20.6882 3.48793 20.9012L3 20.9997Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
-          1 words
+          399 words
         </span>
       
       
@@ -181,7 +181,7 @@
           <svg width="0.75em" height="0.75em" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M12 7V12L14.5 13.5M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
-          ~1 min
+          ~2 mins
         </span>
       
     </div>
@@ -199,10 +199,49 @@
   
   
   
+  <details>
+    <summary>
+      <b>Table of Contents</b>
+    </summary>
+    <div class="toc numbered-subtitles"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#a-shared-reference-with-interior-mutability-noderef">A shared reference with interior mutability: <code>NodeRef</code></a>
+      <ul>
+        <li><a href="#what-is-a-noderef">What is a <code>NodeRef</code></a></li>
+      </ul>
+    </li>
+    <li><a href="#example-implementation-graph-breadth-first-search">Example implementation: Graph Breadth-First-Search</a></li>
+  </ul>
+</nav></div>
+  </details>
+  
   
   <article class="content numbered-subtitles">
     
-    <p>dfdfsf</p>
+    <p>Interviews are hard, and quirks for rust do make them harder. Especially when it comes to data structures like graphs and trees. While in other languages you can quickly code up a pointer based solution due to most languages not having a borrow checker. However, the borrow checker is a bane for writing these data structures in rust, especially in a time constrained setting such as that of a coding interview. This post intends to make that a little easier!</p>
+<h2 id="a-shared-reference-with-interior-mutability-noderef">A shared reference with interior mutability: <code>NodeRef</code></h2>
+<p>If you have struggled with rust&rsquo;s borrow checker enough, you know it&rsquo;s hard for rust to be conviced of the following situation:</p>
+<blockquote>
+<p>I have two entities (vertices) $A$ and $B$ which both want to point to (hence, hold a shared reference to) a third entity $C$. $A$, $B$ and $C$ live as long as each other. And maybe sometimes $C$ wants to be mutated as well.</p>
+</blockquote>
+<p>If you know rust, you know this is stupidly hard with bare references. Not just that you start dealing with lifetimes due to &ldquo;$A$, $B$, $C$ live as long as each other&rdquo;, but mutation when shared references are held is a problem on top (which sometimes we do want to have access to).</p>
+<h3 id="what-is-a-noderef">What is a <code>NodeRef</code></h3>
+<p>A <code>NodeRef</code> is simply a type alias to the following:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-rust" data-lang="rust"><span style="display:flex;"><span><span style="color:#66d9ef">use</span> std::Rc;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> std::cell::RefCell;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">type</span> <span style="color:#a6e22e">NodeRef</span> <span style="color:#f92672">=</span> Rc<span style="color:#f92672">&lt;</span>RefCell<span style="color:#f92672">&lt;</span>Node<span style="color:#f92672">&gt;&gt;</span>
+</span></span></code></pre></div><p>where <code>Node</code> is some struct which holds the information relevant to a specific vertex in a graph or a tree.</p>
+<p>To understand what we are trying to do here, try refering to these documentations:</p>
+<ul>
+<li><a href="https://doc.rust-lang.org/std/rc/">https://doc.rust-lang.org/std/rc/</a></li>
+<li><a href="https://doc.rust-lang.org/std/cell/index.html#refcellt">https://doc.rust-lang.org/std/cell/index.html#refcellt</a></li>
+</ul>
+<p><code>std::Rc</code> is a reference-counting single-threaded immuatable smart pointer which holds the value it has internally till the last reference to that data goes out of scope. What&rsquo;s important is to understand it is single-threaded which is not a proablem for most of the applications under the pretext of interviews, where we have to code fast.</p>
+<p><code>std::cell::RefCell</code> is needed because we need <strong>interior-mutability</strong>: the ability to modify <code>Node</code> even when we do not have the sole mutable access of the underlying at the compile time. Do note that <code>RefCell</code> does not allow you to break the borrow-checking rules, it just defers that to the runtime where we can do <code>.borrow()</code> or <code>.borrow_mut()</code> and ask for the relevant style of references.</p>
+<h2 id="example-implementation-graph-breadth-first-search">Example implementation: Graph Breadth-First-Search</h2>
+<p>Let&rsquo;s try implementing Graph Breadth First Search on this seemingly innocent graph:
+<img src="image.png" alt="Alt text"></p>
 
     
   </article>
@@ -214,17 +253,10 @@
 <div id="sharingbuttons">
     
     
-    <a class="resp-sharing-button__link" href="https://facebook.com/sharer/sharer.php?u=http%3a%2f%2flocalhost%3a1313%2fposts%2ffirst-post%2f" target="_blank" rel="noopener" aria-label="">
-      <div class="resp-sharing-button resp-sharing-button--facebook resp-sharing-button--small"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18.77 7.46H14.5v-1.9c0-.9.6-1.1 1-1.1h3V.5h-4.33C10.24.5 9.5 3.44 9.5 5.32v2.15h-3v4h3v12h5v-12h3.85l.42-4z"/></svg>
-        </div>
-      </div>
-    </a>
-    
 
     
     
-    <a class="resp-sharing-button__link" href="https://twitter.com/intent/tweet/?text=Red-Black%20Trees%20for%20efficient%20binary%20search&amp;url=http%3a%2f%2flocalhost%3a1313%2fposts%2ffirst-post%2f" target="_blank" rel="noopener" aria-label="">
+    <a class="resp-sharing-button__link" href="https://twitter.com/intent/tweet/?text=Graph%20and%20Trees%20in%20rust&amp;url=http%3a%2f%2flocalhost%3a1313%2fposts%2fwriting-graph-trees-rust%2f" target="_blank" rel="noopener" aria-label="">
       <div class="resp-sharing-button resp-sharing-button--twitter resp-sharing-button--small"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M23.44 4.83c-.8.37-1.5.38-2.22.02.93-.56.98-.96 1.32-2.02-.88.52-1.86.9-2.9 1.1-.82-.88-2-1.43-3.3-1.43-2.5 0-4.55 2.04-4.55 4.54 0 .36.03.7.1 1.04-3.77-.2-7.12-2-9.36-4.75-.4.67-.6 1.45-.6 2.3 0 1.56.8 2.95 2 3.77-.74-.03-1.44-.23-2.05-.57v.06c0 2.2 1.56 4.03 3.64 4.44-.67.2-1.37.2-2.06.08.58 1.8 2.26 3.12 4.25 3.16C5.78 18.1 3.37 18.74 1 18.46c2 1.3 4.4 2.04 6.97 2.04 8.35 0 12.92-6.92 12.92-12.93 0-.2 0-.4-.02-.6.9-.63 1.96-1.22 2.56-2.14z"/></svg>
         </div>
@@ -234,17 +266,10 @@
 
     
     
-    <a class="resp-sharing-button__link" href="mailto:?subject=Red-Black%20Trees%20for%20efficient%20binary%20search&amp;body=http%3a%2f%2flocalhost%3a1313%2fposts%2ffirst-post%2f" target="_self" rel="noopener" aria-label="">
-      <div class="resp-sharing-button resp-sharing-button--email resp-sharing-button--small"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M22 4H2C.9 4 0 4.9 0 6v12c0 1.1.9 2 2 2h20c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zM7.25 14.43l-3.5 2c-.08.05-.17.07-.25.07-.17 0-.34-.1-.43-.25-.14-.24-.06-.55.18-.68l3.5-2c.24-.14.55-.06.68.18.14.24.06.55-.18.68zm4.75.07c-.1 0-.2-.03-.27-.08l-8.5-5.5c-.23-.15-.3-.46-.15-.7.15-.22.46-.3.7-.14L12 13.4l8.23-5.32c.23-.15.54-.08.7.15.14.23.07.54-.16.7l-8.5 5.5c-.08.04-.17.07-.27.07zm8.93 1.75c-.1.16-.26.25-.43.25-.08 0-.17-.02-.25-.07l-3.5-2c-.24-.13-.32-.44-.18-.68s.44-.32.68-.18l3.5 2c.24.13.32.44.18.68z"/></svg>
-        </div>
-      </div>
-    </a>
-    
 
     
     
-    <a class="resp-sharing-button__link" href="https://www.linkedin.com/sharing/share-offsite/?url=http%3a%2f%2flocalhost%3a1313%2fposts%2ffirst-post%2f" target="_blank" rel="noopener" aria-label="">
+    <a class="resp-sharing-button__link" href="https://www.linkedin.com/sharing/share-offsite/?url=http%3a%2f%2flocalhost%3a1313%2fposts%2fwriting-graph-trees-rust%2f" target="_blank" rel="noopener" aria-label="">
       <div class="resp-sharing-button resp-sharing-button--linkedin resp-sharing-button--small"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6.5 21.5h-5v-13h5v13zM4 6.5C2.5 6.5 1.5 5.3 1.5 4s1-2.4 2.5-2.4c1.6 0 2.5 1 2.6 2.5 0 1.4-1 2.5-2.6 2.5zm11.5 6c-1 0-2 1-2 2v7h-5v-13h5V10s1.6-1.5 4-1.5c3 0 5 2.2 5 6.3v6.7h-5v-7c0-1-1-2-2-2z"/></svg>
         </div>
@@ -254,7 +279,7 @@
 
     
     
-    <a class="resp-sharing-button__link" href="https://reddit.com/submit/?url=http%3a%2f%2flocalhost%3a1313%2fposts%2ffirst-post%2f&amp;resubmit=true&amp;title=Red-Black%20Trees%20for%20efficient%20binary%20search" target="_blank" rel="noopener" aria-label="">
+    <a class="resp-sharing-button__link" href="https://reddit.com/submit/?url=http%3a%2f%2flocalhost%3a1313%2fposts%2fwriting-graph-trees-rust%2f&amp;resubmit=true&amp;title=Graph%20and%20Trees%20in%20rust" target="_blank" rel="noopener" aria-label="">
       <div class="resp-sharing-button resp-sharing-button--reddit resp-sharing-button--small"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M24 11.5c0-1.65-1.35-3-3-3-.96 0-1.86.48-2.42 1.24-1.64-1-3.75-1.64-6.07-1.72.08-1.1.4-3.05 1.52-3.7.72-.4 1.73-.24 3 .5C17.2 6.3 18.46 7.5 20 7.5c1.65 0 3-1.35 3-3s-1.35-3-3-3c-1.38 0-2.54.94-2.88 2.22-1.43-.72-2.64-.8-3.6-.25-1.64.94-1.95 3.47-2 4.55-2.33.08-4.45.7-6.1 1.72C4.86 8.98 3.96 8.5 3 8.5c-1.65 0-3 1.35-3 3 0 1.32.84 2.44 2.05 2.84-.03.22-.05.44-.05.66 0 3.86 4.5 7 10 7s10-3.14 10-7c0-.22-.02-.44-.05-.66 1.2-.4 2.05-1.54 2.05-2.84zM2.3 13.37C1.5 13.07 1 12.35 1 11.5c0-1.1.9-2 2-2 .64 0 1.22.32 1.6.82-1.1.85-1.92 1.9-2.3 3.05zm3.7.13c0-1.1.9-2 2-2s2 .9 2 2-.9 2-2 2-2-.9-2-2zm9.8 4.8c-1.08.63-2.42.96-3.8.96-1.4 0-2.74-.34-3.8-.95-.24-.13-.32-.44-.2-.68.15-.24.46-.32.7-.18 1.83 1.06 4.76 1.06 6.6 0 .23-.13.53-.05.67.2.14.23.06.54-.18.67zm.2-2.8c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm5.7-2.13c-.38-1.16-1.2-2.2-2.3-3.05.38-.5.97-.82 1.6-.82 1.1 0 2 .9 2 2 0 .84-.53 1.57-1.3 1.87z"/></svg>
         </div>
@@ -264,27 +289,13 @@
 
     
     
-    <a class="resp-sharing-button__link" href="whatsapp://send?text=http%3a%2f%2flocalhost%3a1313%2fposts%2ffirst-post%2f" target="_blank" rel="noopener" aria-label="">
-      <div class="resp-sharing-button resp-sharing-button--whatsapp resp-sharing-button--small"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.1 3.9C17.9 1.7 15 .5 12 .5 5.8.5.7 5.6.7 11.9c0 2 .5 3.9 1.5 5.6L.6 23.4l6-1.6c1.6.9 3.5 1.3 5.4 1.3 6.3 0 11.4-5.1 11.4-11.4-.1-2.8-1.2-5.7-3.3-7.8zM12 21.4c-1.7 0-3.3-.5-4.8-1.3l-.4-.2-3.5 1 1-3.4L4 17c-1-1.5-1.4-3.2-1.4-5.1 0-5.2 4.2-9.4 9.4-9.4 2.5 0 4.9 1 6.7 2.8 1.8 1.8 2.8 4.2 2.8 6.7-.1 5.2-4.3 9.4-9.5 9.4zm5.1-7.1c-.3-.1-1.7-.9-1.9-1-.3-.1-.5-.1-.7.1-.2.3-.8 1-.9 1.1-.2.2-.3.2-.6.1s-1.2-.5-2.3-1.4c-.9-.8-1.4-1.7-1.6-2-.2-.3 0-.5.1-.6s.3-.3.4-.5c.2-.1.3-.3.4-.5.1-.2 0-.4 0-.5C10 9 9.3 7.6 9 7c-.1-.4-.4-.3-.5-.3h-.6s-.4.1-.7.3c-.3.3-1 1-1 2.4s1 2.8 1.1 3c.1.2 2 3.1 4.9 4.3.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.6-.1 1.7-.7 1.9-1.3.2-.7.2-1.2.2-1.3-.1-.3-.3-.4-.6-.5z"/></svg>
-        </div>
-      </div>
-    </a>
+
+    
     
 
     
     
-    <a class="resp-sharing-button__link" href="https://news.ycombinator.com/submitlink?u=http%3a%2f%2flocalhost%3a1313%2fposts%2ffirst-post%2f&amp;t=Red-Black%20Trees%20for%20efficient%20binary%20search" target="_blank" rel="noopener" aria-label="">
-      <div class="resp-sharing-button resp-sharing-button--hackernews resp-sharing-button--small"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
-    	<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 140 140"><path fill-rule="evenodd" d="M60.94 82.314L17 0h20.08l25.85 52.093c.397.927.86 1.888 1.39 2.883.53.994.995 2.02 1.393 3.08.265.4.463.764.596 1.095.13.334.262.63.395.898.662 1.325 1.26 2.618 1.79 3.877.53 1.26.993 2.42 1.39 3.48 1.06-2.254 2.22-4.673 3.48-7.258 1.26-2.585 2.552-5.27 3.877-8.052L103.49 0h18.69L77.84 83.308v53.087h-16.9v-54.08z"></path></svg>
-        </div>
-      </div>
-    </a>
-    
-
-    
-    
-    <a class="resp-sharing-button__link" href="https://telegram.me/share/url?text=Red-Black%20Trees%20for%20efficient%20binary%20search&amp;url=http%3a%2f%2flocalhost%3a1313%2fposts%2ffirst-post%2f" target="_blank" rel="noopener" aria-label="">
+    <a class="resp-sharing-button__link" href="https://telegram.me/share/url?text=Graph%20and%20Trees%20in%20rust&amp;url=http%3a%2f%2flocalhost%3a1313%2fposts%2fwriting-graph-trees-rust%2f" target="_blank" rel="noopener" aria-label="">
       <div class="resp-sharing-button resp-sharing-button--telegram resp-sharing-button--small"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M.707 8.475C.275 8.64 0 9.508 0 9.508s.284.867.718 1.03l5.09 1.897 1.986 6.38a1.102 1.102 0 0 0 1.75.527l2.96-2.41a.405.405 0 0 1 .494-.013l5.34 3.87a1.1 1.1 0 0 0 1.046.135 1.1 1.1 0 0 0 .682-.803l3.91-18.795A1.102 1.102 0 0 0 22.5.075L.706 8.475z"/></svg>
         </div>
