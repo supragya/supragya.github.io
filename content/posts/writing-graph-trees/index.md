@@ -1,7 +1,7 @@
 ---
 author: "Me"
 title: "Graph and Trees in rust"
-date: "2024-07-26"
+date: "2024-07-25"
 description: "How to write code for graph and trees in rust for interviews"
 tags: [
     "data_structures",
@@ -9,7 +9,7 @@ tags: [
 ]
 
 ---
-Interviews are hard, and quirks for rust do make them harder. Especially when it comes to data structures like graphs and trees. While in other languages you can quickly code up a pointer based solution due to most languages not having a borrow checker. However, the borrow checker is a bane for writing these data structures in rust, especially in a time constrained setting such as that of a coding interview. This post intends to make that a little easier!
+Interviews are hard, and quirks for rust do make them harder. Especially when it comes to data structures like graphs and trees. While in other languages you can quickly code up a pointer based solution due to those languages not having a borrow checker. However, the borrow checker is a bane for writing these data structures in rust, especially in a time constrained setting such as that of a coding interview. This post intends to make that a little easier!
 
 ## A shared reference with interior mutability: `NodeRef`
 If you have struggled with rust's borrow checker enough, you know it's hard for rust to be conviced of the following situation:
@@ -21,10 +21,7 @@ If you know rust, you know this is stupidly hard with bare references. Not just 
 ### What is a `NodeRef`
 A `NodeRef` is simply a type alias to the following:
 ```rust
-use std::Rc;
-use std::cell::RefCell;
-
-type NodeRef = Rc<RefCell<Node>>
+type NodeRef = std::Rc<std::cell::RefCell<Node>>
 ```
 where `Node` is some struct which holds the information relevant to a specific vertex in a graph or a tree.
 
@@ -32,14 +29,14 @@ To understand what we are trying to do here, try refering to these documentation
 - https://doc.rust-lang.org/std/rc/
 - https://doc.rust-lang.org/std/cell/index.html#refcellt
 
-`std::Rc` is a reference-counting single-threaded immuatable smart pointer which holds the value it has internally till the last reference to that data goes out of scope. What's important is to understand it is single-threaded which is not a proablem for most of the applications under the pretext of interviews, where we have to code fast.
+`std::Rc` is a reference-counting single-threaded immutable smart pointer which holds the value it has internally till the last reference to that data goes out of scope. What's important is to understand it is single-threaded which is not a problem for most of the applications under the pretext of interviews, where we have to code fast.
 
 `std::cell::RefCell` is needed because we need **interior-mutability**: the ability to modify `Node` even when we do not have the sole mutable access of the underlying at the compile time. Do note that `RefCell` does not allow you to break the borrow-checking rules, it just defers that to the runtime where we can do `.borrow()` or `.borrow_mut()` and ask for the relevant style of references.
 
 ## Example implementation: Graph Breadth-First-Search
 Let's try implementing Graph Breadth First Search on this seemingly innocent undirected graph:
 
-![Alt text](./writing-graph-trees-graph1.png)
+![Example Undirected Graph](./writing-graph-trees-graph1.png)
 
 We will use this simple test:
 ```rust
@@ -75,6 +72,8 @@ fn basic_graph_bfs() {
 }
 ```
 
+What we have done above is simple. We create a new "graph" via `Graph::new()`, and create nodes which are all `1`-based indexed. That means, we are not in the realm of `[0, 1, 2, ...]` for vertex / node identifiers. Hence you would see at places `vtx_id - 1` and `neighbor_id - 1`. This is not strictly necessary and it may be preferred to have `0`-based indexing. However, for exposition purposes, we have chosen to be `1`-indexed for now.
+
 let's try setting up the following two structs `Graph` and `Node`:
 ```rust
 use std::{
@@ -84,12 +83,20 @@ use std::{
 
 type NodeRef = Rc<RefCell<Node>>;
 
+/// Graph is a parent struct that ensures each of the `Node` generated
+/// is unique in its identifiers. Also holds reference to all the nodes
+/// in `nodes`.
 #[derive(Default)]
 struct Graph {
     nodes: Vec<NodeRef>,
     unique_id_latest: usize,
 }
 
+/// Adjecency List description of a `Node`. Each `Node` remembers
+/// its neighbors (outwards), i.e. if node `A` has `B` in its `edges`,
+/// `A -> B` is a directed edge. Undirected graphs have both the edges
+/// in their representation. `A` holds `B` in its edges, and `B` holds
+/// `A` in its.
 struct Node {
     unique_id: usize,
     value: usize,
@@ -100,6 +107,8 @@ struct Node {
 Simple `impl` blocks that are obvious to them:
 ```rust
 impl Graph {
+    /// Creates a new `Graph` with no nodes, `unique_id_latest`
+    /// set to `0` initially
     pub fn new() -> Self {
         Self {
             ..Default::default()
@@ -113,12 +122,6 @@ impl Graph {
     pub fn bfs(&self) -> Vec<usize> {
         todo!()
     }
-}
-
-struct Node {
-    unique_id: usize,
-    value: usize,
-    edges: Vec<NodeRef>,
 }
 
 impl Node {
@@ -145,8 +148,7 @@ But why does `RefCell` not implement `std::hash::Hash`? The simplest reason is i
 
 ### Let's implement the remaining methods
 
-The remaining methods are pretty self-explanatory after we understand the rationale behind our setup. The
-following is how the rest of `Graph` impl looks:
+The remaining methods are pretty self-explanatory after we understand the rationale behind our setup. The following is how the rest of `Graph` impl looks:
 ```rust
 impl Graph {
     pub fn new() -> Self {

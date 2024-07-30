@@ -54,8 +54,8 @@
   <meta property="og:locale" content="en">
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
-    <meta property="article:published_time" content="2024-07-26T00:00:00+00:00">
-    <meta property="article:modified_time" content="2024-07-26T00:00:00+00:00">
+    <meta property="article:published_time" content="2024-07-25T00:00:00+00:00">
+    <meta property="article:modified_time" content="2024-07-26T14:11:58+05:30">
     <meta property="article:tag" content="Data_structures">
     <meta property="article:tag" content="Rust">
 
@@ -68,9 +68,9 @@
   
   <meta itemprop="name" content="Graph and Trees in rust">
   <meta itemprop="description" content="How to write code for graph and trees in rust for interviews">
-  <meta itemprop="datePublished" content="2024-07-26T00:00:00+00:00">
-  <meta itemprop="dateModified" content="2024-07-26T00:00:00+00:00">
-  <meta itemprop="wordCount" content="1045">
+  <meta itemprop="datePublished" content="2024-07-25T00:00:00+00:00">
+  <meta itemprop="dateModified" content="2024-07-26T14:11:58+05:30">
+  <meta itemprop="wordCount" content="1207">
   <meta itemprop="keywords" content="Data_structures,Rust">
 
   
@@ -115,11 +115,7 @@
 <header id="header">
   <h1>
     <a href="http://localhost:1313/">Supragya Raj</a>
-    <button id="dark-mode-toggle" class="dark-mode-toggle" aria-label="Toggle theme">
-        <svg width="2rem" height="2rem" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 496">
-        <path fill="currentColor" d="M8,256C8,393,119,504,256,504S504,393,504,256,393,8,256,8,8,119,8,256ZM256,440V72a184,184,0,0,1,0,368Z" transform="translate(-8 -8)"/>
-        </svg>
-    </button>
+    
   </h1>
 
   <nav>
@@ -150,6 +146,7 @@
   </nav>
 </header>
 <hr class="head-rule"></hr>
+
     
 <main id="main" class="post">
   
@@ -160,7 +157,7 @@
       <svg width="0.75em" height="0.75em" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M3 9H21M7 3V5M17 3V5M6 13H8M6 17H8M11 13H13M11 17H13M16 13H18M16 17H18M6.2 21H17.8C18.9201 21 19.4802 21 19.908 20.782C20.2843 20.5903 20.5903 20.2843 20.782 19.908C21 19.4802 21 18.9201 21 17.8V8.2C21 7.07989 21 6.51984 20.782 6.09202C20.5903 5.71569 20.2843 5.40973 19.908 5.21799C19.4802 5 18.9201 5 17.8 5H6.2C5.0799 5 4.51984 5 4.09202 5.21799C3.71569 5.40973 3.40973 5.71569 3.21799 6.09202C3 6.51984 3 7.07989 3 8.2V17.8C3 18.9201 3 19.4802 3.21799 19.908C3.40973 20.2843 3.71569 20.5903 4.09202 20.782C4.51984 21 5.07989 21 6.2 21Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
       </svg>
-      26 July 2024
+      25 July 2024
       
       
         &nbsp;
@@ -168,7 +165,7 @@
           <svg width="0.75em" height="0.75em" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M15.4998 5.49994L18.3282 8.32837M3 20.9997L3.04745 20.6675C3.21536 19.4922 3.29932 18.9045 3.49029 18.3558C3.65975 17.8689 3.89124 17.4059 4.17906 16.9783C4.50341 16.4963 4.92319 16.0765 5.76274 15.237L17.4107 3.58896C18.1918 2.80791 19.4581 2.80791 20.2392 3.58896C21.0202 4.37001 21.0202 5.63634 20.2392 6.41739L8.37744 18.2791C7.61579 19.0408 7.23497 19.4216 6.8012 19.7244C6.41618 19.9932 6.00093 20.2159 5.56398 20.3879C5.07171 20.5817 4.54375 20.6882 3.48793 20.9012L3 20.9997Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
-          1045 words
+          1207 words
         </span>
       
       
@@ -181,7 +178,7 @@
           <svg width="0.75em" height="0.75em" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M12 7V12L14.5 13.5M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
-          ~5 mins
+          ~6 mins
         </span>
       
     </div>
@@ -223,7 +220,7 @@
   
   <article class="content numbered-subtitles">
     
-    <p>Interviews are hard, and quirks for rust do make them harder. Especially when it comes to data structures like graphs and trees. While in other languages you can quickly code up a pointer based solution due to most languages not having a borrow checker. However, the borrow checker is a bane for writing these data structures in rust, especially in a time constrained setting such as that of a coding interview. This post intends to make that a little easier!</p>
+    <p>Interviews are hard, and quirks for rust do make them harder. Especially when it comes to data structures like graphs and trees. While in other languages you can quickly code up a pointer based solution due to those languages not having a borrow checker. However, the borrow checker is a bane for writing these data structures in rust, especially in a time constrained setting such as that of a coding interview. This post intends to make that a little easier!</p>
 <h2 id="a-shared-reference-with-interior-mutability-noderef">A shared reference with interior mutability: <code>NodeRef</code></h2>
 <p>If you have struggled with rust&rsquo;s borrow checker enough, you know it&rsquo;s hard for rust to be conviced of the following situation:</p>
 <blockquote>
@@ -232,21 +229,18 @@
 <p>If you know rust, you know this is stupidly hard with bare references. Not just that you start dealing with lifetimes due to &ldquo;$A$, $B$, $C$ live as long as each other&rdquo;, but mutation when shared references are held is a problem on top (which sometimes we do want to have access to).</p>
 <h3 id="what-is-a-noderef">What is a <code>NodeRef</code></h3>
 <p>A <code>NodeRef</code> is simply a type alias to the following:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-rust" data-lang="rust"><span style="display:flex;"><span><span style="color:#66d9ef">use</span> std::Rc;
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> std::cell::RefCell;
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">type</span> <span style="color:#a6e22e">NodeRef</span> <span style="color:#f92672">=</span> Rc<span style="color:#f92672">&lt;</span>RefCell<span style="color:#f92672">&lt;</span>Node<span style="color:#f92672">&gt;&gt;</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-rust" data-lang="rust"><span style="display:flex;"><span><span style="color:#66d9ef">type</span> <span style="color:#a6e22e">NodeRef</span> <span style="color:#f92672">=</span> std::Rc<span style="color:#f92672">&lt;</span>std::cell::RefCell<span style="color:#f92672">&lt;</span>Node<span style="color:#f92672">&gt;&gt;</span>
 </span></span></code></pre></div><p>where <code>Node</code> is some struct which holds the information relevant to a specific vertex in a graph or a tree.</p>
 <p>To understand what we are trying to do here, try refering to these documentations:</p>
 <ul>
 <li><a href="https://doc.rust-lang.org/std/rc/">https://doc.rust-lang.org/std/rc/</a></li>
 <li><a href="https://doc.rust-lang.org/std/cell/index.html#refcellt">https://doc.rust-lang.org/std/cell/index.html#refcellt</a></li>
 </ul>
-<p><code>std::Rc</code> is a reference-counting single-threaded immuatable smart pointer which holds the value it has internally till the last reference to that data goes out of scope. What&rsquo;s important is to understand it is single-threaded which is not a proablem for most of the applications under the pretext of interviews, where we have to code fast.</p>
+<p><code>std::Rc</code> is a reference-counting single-threaded immutable smart pointer which holds the value it has internally till the last reference to that data goes out of scope. What&rsquo;s important is to understand it is single-threaded which is not a problem for most of the applications under the pretext of interviews, where we have to code fast.</p>
 <p><code>std::cell::RefCell</code> is needed because we need <strong>interior-mutability</strong>: the ability to modify <code>Node</code> even when we do not have the sole mutable access of the underlying at the compile time. Do note that <code>RefCell</code> does not allow you to break the borrow-checking rules, it just defers that to the runtime where we can do <code>.borrow()</code> or <code>.borrow_mut()</code> and ask for the relevant style of references.</p>
 <h2 id="example-implementation-graph-breadth-first-search">Example implementation: Graph Breadth-First-Search</h2>
 <p>Let&rsquo;s try implementing Graph Breadth First Search on this seemingly innocent undirected graph:</p>
-<p><img src="./writing-graph-trees-graph1.png" alt="Alt text"></p>
+<p><img src="./writing-graph-trees-graph1.png" alt="Example Undirected Graph"></p>
 <p>We will use this simple test:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-rust" data-lang="rust"><span style="display:flex;"><span><span style="color:#75715e">#[test]</span>
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">fn</span> <span style="color:#a6e22e">basic_graph_bfs</span>() {
@@ -278,7 +272,8 @@
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>    assert_eq!(graph.bfs(), vec![<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">6</span>]);
 </span></span><span style="display:flex;"><span>}
-</span></span></code></pre></div><p>let&rsquo;s try setting up the following two structs <code>Graph</code> and <code>Node</code>:</p>
+</span></span></code></pre></div><p>What we have done above is simple. We create a new &ldquo;graph&rdquo; via <code>Graph::new()</code>, and create nodes which are all <code>1</code>-based indexed. That means, we are not in the realm of <code>[0, 1, 2, ...]</code> for vertex / node identifiers. Hence you would see at places <code>vtx_id - 1</code> and <code>neighbor_id - 1</code>. This is not strictly necessary and it may be preferred to have <code>0</code>-based indexing. However, for exposition purposes, we have chosen to be <code>1</code>-indexed for now.</p>
+<p>let&rsquo;s try setting up the following two structs <code>Graph</code> and <code>Node</code>:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-rust" data-lang="rust"><span style="display:flex;"><span><span style="color:#66d9ef">use</span> std::{
 </span></span><span style="display:flex;"><span>    cell::RefCell,
 </span></span><span style="display:flex;"><span>    rc::Rc,
@@ -286,20 +281,30 @@
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">type</span> <span style="color:#a6e22e">NodeRef</span> <span style="color:#f92672">=</span> Rc<span style="color:#f92672">&lt;</span>RefCell<span style="color:#f92672">&lt;</span>Node<span style="color:#f92672">&gt;&gt;</span>;
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">#[derive(Default)]</span>
+</span></span><span style="display:flex;"><span><span style="color:#e6db74">/// Graph is a parent struct that ensures each of the `Node` generated
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">/// is unique in its identifiers. Also holds reference to all the nodes
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">/// in `nodes`.
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74"></span><span style="color:#75715e">#[derive(Default)]</span>
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">Graph</span> {
 </span></span><span style="display:flex;"><span>    nodes: Vec<span style="color:#f92672">&lt;</span>NodeRef<span style="color:#f92672">&gt;</span>,
 </span></span><span style="display:flex;"><span>    unique_id_latest: <span style="color:#66d9ef">usize</span>,
 </span></span><span style="display:flex;"><span>}
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">Node</span> {
+</span></span><span style="display:flex;"><span><span style="color:#e6db74">/// Adjecency List description of a `Node`. Each `Node` remembers
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">/// its neighbors (outwards), i.e. if node `A` has `B` in its `edges`,
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">/// `A -&gt; B` is a directed edge. Undirected graphs have both the edges
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">/// in their representation. `A` holds `B` in its edges, and `B` holds
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">/// `A` in its.
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74"></span><span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">Node</span> {
 </span></span><span style="display:flex;"><span>    unique_id: <span style="color:#66d9ef">usize</span>,
 </span></span><span style="display:flex;"><span>    value: <span style="color:#66d9ef">usize</span>,
 </span></span><span style="display:flex;"><span>    edges: Vec<span style="color:#f92672">&lt;</span>NodeRef<span style="color:#f92672">&gt;</span>,
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><p>Simple <code>impl</code> blocks that are obvious to them:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-rust" data-lang="rust"><span style="display:flex;"><span><span style="color:#66d9ef">impl</span> Graph {
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">pub</span> <span style="color:#66d9ef">fn</span> <span style="color:#a6e22e">new</span>() -&gt; <span style="color:#a6e22e">Self</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">/// Creates a new `Graph` with no nodes, `unique_id_latest`
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74"></span>    <span style="color:#e6db74">/// set to `0` initially
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74"></span>    <span style="color:#66d9ef">pub</span> <span style="color:#66d9ef">fn</span> <span style="color:#a6e22e">new</span>() -&gt; <span style="color:#a6e22e">Self</span> {
 </span></span><span style="display:flex;"><span>        Self {
 </span></span><span style="display:flex;"><span>            <span style="color:#f92672">..</span>Default::default()
 </span></span><span style="display:flex;"><span>        }
@@ -312,12 +317,6 @@
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">pub</span> <span style="color:#66d9ef">fn</span> <span style="color:#a6e22e">bfs</span>(<span style="color:#f92672">&amp;</span>self) -&gt; Vec<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">usize</span><span style="color:#f92672">&gt;</span> {
 </span></span><span style="display:flex;"><span>        todo!()
 </span></span><span style="display:flex;"><span>    }
-</span></span><span style="display:flex;"><span>}
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">Node</span> {
-</span></span><span style="display:flex;"><span>    unique_id: <span style="color:#66d9ef">usize</span>,
-</span></span><span style="display:flex;"><span>    value: <span style="color:#66d9ef">usize</span>,
-</span></span><span style="display:flex;"><span>    edges: Vec<span style="color:#f92672">&lt;</span>NodeRef<span style="color:#f92672">&gt;</span>,
 </span></span><span style="display:flex;"><span>}
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">impl</span> Node {
@@ -338,8 +337,7 @@
 </blockquote>
 <p><code>unique_id</code> is the identifier we put within each <code>Node</code> so that it is unique w.r.t. all the other node. <strong>For this reason, you cannot construct a <code>Node</code> yourself unless you go via <code>graph.new_node()</code> which ensures uniqueness of ID</strong>.</p>
 <h3 id="lets-implement-the-remaining-methods">Let&rsquo;s implement the remaining methods</h3>
-<p>The remaining methods are pretty self-explanatory after we understand the rationale behind our setup. The
-following is how the rest of <code>Graph</code> impl looks:</p>
+<p>The remaining methods are pretty self-explanatory after we understand the rationale behind our setup. The following is how the rest of <code>Graph</code> impl looks:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-rust" data-lang="rust"><span style="display:flex;"><span><span style="color:#66d9ef">impl</span> Graph {
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">pub</span> <span style="color:#66d9ef">fn</span> <span style="color:#a6e22e">new</span>() -&gt; <span style="color:#a6e22e">Self</span> {
 </span></span><span style="display:flex;"><span>        Self {
