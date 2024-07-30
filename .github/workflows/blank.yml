@@ -22,7 +22,10 @@ jobs:
       
       - name: Install PostCSS
         run: npm i -D postcss postcss-cli autoprefixer
-
+      
+      - name: Clear npm cache
+        run: npm cache clean --force
+      
       - name: Setup Hugo
         uses: peaceiris/actions-hugo@v2
         with:

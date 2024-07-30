@@ -8,14 +8,14 @@
     <language>en</language>
     <managingEditor>supragyaraj&#43;sgh@gmail.com (Supragya Raj)</managingEditor>
     <webMaster>supragyaraj&#43;sgh@gmail.com (Supragya Raj)</webMaster>
-    <lastBuildDate>Fri, 26 Jul 2024 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/tags/data_structures/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 25 Jul 2024 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/tags/data_structures/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Graph and Trees in rust</title>
       <link>http://localhost:1313/posts/writing-graph-trees/</link>
-      <pubDate>Fri, 26 Jul 2024 00:00:00 +0000</pubDate>
+      <pubDate>Thu, 25 Jul 2024 00:00:00 +0000</pubDate>
       <author>supragyaraj&#43;sgh@gmail.com (Supragya Raj)</author>
       <guid>http://localhost:1313/posts/writing-graph-trees/</guid>
-      <description>&lt;p&gt;Interviews are hard, and quirks for rust do make them harder. Especially when it comes to data structures like graphs and trees. While in other languages you can quickly code up a pointer based solution due to most languages not having a borrow checker. However, the borrow checker is a bane for writing these data structures in rust, especially in a time constrained setting such as that of a coding interview. This post intends to make that a little easier!&lt;/p&gt;
+      <description>&lt;p&gt;Interviews are hard, and quirks for rust do make them harder. Especially when it comes to data structures like graphs and trees. While in other languages you can quickly code up a pointer based solution due to those languages not having a borrow checker. However, the borrow checker is a bane for writing these data structures in rust, especially in a time constrained setting such as that of a coding interview. This post intends to make that a little easier!&lt;/p&gt;
 &lt;h2 id=&#34;a-shared-reference-with-interior-mutability-noderef&#34;&gt;A shared reference with interior mutability: &lt;code&gt;NodeRef&lt;/code&gt;&lt;/h2&gt;
 &lt;p&gt;If you have struggled with rust&amp;rsquo;s borrow checker enough, you know it&amp;rsquo;s hard for rust to be conviced of the following situation:&lt;/p&gt;
 &lt;blockquote&gt;
@@ -24,21 +24,18 @@
 &lt;p&gt;If you know rust, you know this is stupidly hard with bare references. Not just that you start dealing with lifetimes due to &amp;ldquo;$A$, $B$, $C$ live as long as each other&amp;rdquo;, but mutation when shared references are held is a problem on top (which sometimes we do want to have access to).&lt;/p&gt;
 &lt;h3 id=&#34;what-is-a-noderef&#34;&gt;What is a &lt;code&gt;NodeRef&lt;/code&gt;&lt;/h3&gt;
 &lt;p&gt;A &lt;code&gt;NodeRef&lt;/code&gt; is simply a type alias to the following:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-rust&#34; data-lang=&#34;rust&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;use&lt;/span&gt; std::Rc;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;use&lt;/span&gt; std::cell::RefCell;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;type&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;NodeRef&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; Rc&lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&lt;/span&gt;RefCell&lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&lt;/span&gt;Node&lt;span style=&#34;color:#f92672&#34;&gt;&amp;gt;&amp;gt;&lt;/span&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-rust&#34; data-lang=&#34;rust&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;type&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;NodeRef&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; std::Rc&lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&lt;/span&gt;std::cell::RefCell&lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&lt;/span&gt;Node&lt;span style=&#34;color:#f92672&#34;&gt;&amp;gt;&amp;gt;&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;where &lt;code&gt;Node&lt;/code&gt; is some struct which holds the information relevant to a specific vertex in a graph or a tree.&lt;/p&gt;
 &lt;p&gt;To understand what we are trying to do here, try refering to these documentations:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;https://doc.rust-lang.org/std/rc/&#34;&gt;https://doc.rust-lang.org/std/rc/&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;https://doc.rust-lang.org/std/cell/index.html#refcellt&#34;&gt;https://doc.rust-lang.org/std/cell/index.html#refcellt&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;&lt;code&gt;std::Rc&lt;/code&gt; is a reference-counting single-threaded immuatable smart pointer which holds the value it has internally till the last reference to that data goes out of scope. What&amp;rsquo;s important is to understand it is single-threaded which is not a proablem for most of the applications under the pretext of interviews, where we have to code fast.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;std::Rc&lt;/code&gt; is a reference-counting single-threaded immutable smart pointer which holds the value it has internally till the last reference to that data goes out of scope. What&amp;rsquo;s important is to understand it is single-threaded which is not a problem for most of the applications under the pretext of interviews, where we have to code fast.&lt;/p&gt;
 &lt;p&gt;&lt;code&gt;std::cell::RefCell&lt;/code&gt; is needed because we need &lt;strong&gt;interior-mutability&lt;/strong&gt;: the ability to modify &lt;code&gt;Node&lt;/code&gt; even when we do not have the sole mutable access of the underlying at the compile time. Do note that &lt;code&gt;RefCell&lt;/code&gt; does not allow you to break the borrow-checking rules, it just defers that to the runtime where we can do &lt;code&gt;.borrow()&lt;/code&gt; or &lt;code&gt;.borrow_mut()&lt;/code&gt; and ask for the relevant style of references.&lt;/p&gt;
 &lt;h2 id=&#34;example-implementation-graph-breadth-first-search&#34;&gt;Example implementation: Graph Breadth-First-Search&lt;/h2&gt;
 &lt;p&gt;Let&amp;rsquo;s try implementing Graph Breadth First Search on this seemingly innocent undirected graph:&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;./writing-graph-trees-graph1.png&#34; alt=&#34;Alt text&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;./writing-graph-trees-graph1.png&#34; alt=&#34;Example Undirected Graph&#34;&gt;&lt;/p&gt;
 &lt;p&gt;We will use this simple test:&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-rust&#34; data-lang=&#34;rust&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;#[test]&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;fn&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;basic_graph_bfs&lt;/span&gt;() {
@@ -70,7 +67,8 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    assert_eq!(graph.bfs(), vec![&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;, &lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt;, &lt;span style=&#34;color:#ae81ff&#34;&gt;5&lt;/span&gt;, &lt;span style=&#34;color:#ae81ff&#34;&gt;3&lt;/span&gt;, &lt;span style=&#34;color:#ae81ff&#34;&gt;4&lt;/span&gt;, &lt;span style=&#34;color:#ae81ff&#34;&gt;6&lt;/span&gt;]);
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;let&amp;rsquo;s try setting up the following two structs &lt;code&gt;Graph&lt;/code&gt; and &lt;code&gt;Node&lt;/code&gt;:&lt;/p&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;What we have done above is simple. We create a new &amp;ldquo;graph&amp;rdquo; via &lt;code&gt;Graph::new()&lt;/code&gt;, and create nodes which are all &lt;code&gt;1&lt;/code&gt;-based indexed. That means, we are not in the realm of &lt;code&gt;[0, 1, 2, ...]&lt;/code&gt; for vertex / node identifiers. Hence you would see at places &lt;code&gt;vtx_id - 1&lt;/code&gt; and &lt;code&gt;neighbor_id - 1&lt;/code&gt;. This is not strictly necessary and it may be preferred to have &lt;code&gt;0&lt;/code&gt;-based indexing. However, for exposition purposes, we have chosen to be &lt;code&gt;1&lt;/code&gt;-indexed for now.&lt;/p&gt;
+&lt;p&gt;let&amp;rsquo;s try setting up the following two structs &lt;code&gt;Graph&lt;/code&gt; and &lt;code&gt;Node&lt;/code&gt;:&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-rust&#34; data-lang=&#34;rust&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;use&lt;/span&gt; std::{
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    cell::RefCell,
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    rc::Rc,
@@ -78,20 +76,30 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;type&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;NodeRef&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; Rc&lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&lt;/span&gt;RefCell&lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&lt;/span&gt;Node&lt;span style=&#34;color:#f92672&#34;&gt;&amp;gt;&amp;gt;&lt;/span&gt;;
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;#[derive(Default)]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;/// Graph is a parent struct that ensures each of the `Node` generated
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;/// is unique in its identifiers. Also holds reference to all the nodes
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;/// in `nodes`.
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;#[derive(Default)]&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;struct&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;Graph&lt;/span&gt; {
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    nodes: Vec&lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&lt;/span&gt;NodeRef&lt;span style=&#34;color:#f92672&#34;&gt;&amp;gt;&lt;/span&gt;,
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    unique_id_latest: &lt;span style=&#34;color:#66d9ef&#34;&gt;usize&lt;/span&gt;,
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;struct&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;Node&lt;/span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;/// Adjecency List description of a `Node`. Each `Node` remembers
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;/// its neighbors (outwards), i.e. if node `A` has `B` in its `edges`,
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;/// `A -&amp;gt; B` is a directed edge. Undirected graphs have both the edges
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;/// in their representation. `A` holds `B` in its edges, and `B` holds
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;/// `A` in its.
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;struct&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;Node&lt;/span&gt; {
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    unique_id: &lt;span style=&#34;color:#66d9ef&#34;&gt;usize&lt;/span&gt;,
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    value: &lt;span style=&#34;color:#66d9ef&#34;&gt;usize&lt;/span&gt;,
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    edges: Vec&lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&lt;/span&gt;NodeRef&lt;span style=&#34;color:#f92672&#34;&gt;&amp;gt;&lt;/span&gt;,
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Simple &lt;code&gt;impl&lt;/code&gt; blocks that are obvious to them:&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-rust&#34; data-lang=&#34;rust&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;impl&lt;/span&gt; Graph {
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;pub&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;fn&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;new&lt;/span&gt;() -&amp;gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;Self&lt;/span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#e6db74&#34;&gt;/// Creates a new `Graph` with no nodes, `unique_id_latest`
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&lt;/span&gt;    &lt;span style=&#34;color:#e6db74&#34;&gt;/// set to `0` initially
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&lt;/span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;pub&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;fn&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;new&lt;/span&gt;() -&amp;gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;Self&lt;/span&gt; {
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        Self {
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            &lt;span style=&#34;color:#f92672&#34;&gt;..&lt;/span&gt;Default::default()
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        }
@@ -104,12 +112,6 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;pub&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;fn&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;bfs&lt;/span&gt;(&lt;span style=&#34;color:#f92672&#34;&gt;&amp;amp;&lt;/span&gt;self) -&amp;gt; Vec&lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;usize&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;&amp;gt;&lt;/span&gt; {
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        todo!()
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    }
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;struct&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;Node&lt;/span&gt; {
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    unique_id: &lt;span style=&#34;color:#66d9ef&#34;&gt;usize&lt;/span&gt;,
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    value: &lt;span style=&#34;color:#66d9ef&#34;&gt;usize&lt;/span&gt;,
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    edges: Vec&lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&lt;/span&gt;NodeRef&lt;span style=&#34;color:#f92672&#34;&gt;&amp;gt;&lt;/span&gt;,
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;impl&lt;/span&gt; Node {
@@ -130,8 +132,7 @@
 &lt;/blockquote&gt;
 &lt;p&gt;&lt;code&gt;unique_id&lt;/code&gt; is the identifier we put within each &lt;code&gt;Node&lt;/code&gt; so that it is unique w.r.t. all the other node. &lt;strong&gt;For this reason, you cannot construct a &lt;code&gt;Node&lt;/code&gt; yourself unless you go via &lt;code&gt;graph.new_node()&lt;/code&gt; which ensures uniqueness of ID&lt;/strong&gt;.&lt;/p&gt;
 &lt;h3 id=&#34;lets-implement-the-remaining-methods&#34;&gt;Let&amp;rsquo;s implement the remaining methods&lt;/h3&gt;
-&lt;p&gt;The remaining methods are pretty self-explanatory after we understand the rationale behind our setup. The
-following is how the rest of &lt;code&gt;Graph&lt;/code&gt; impl looks:&lt;/p&gt;
+&lt;p&gt;The remaining methods are pretty self-explanatory after we understand the rationale behind our setup. The following is how the rest of &lt;code&gt;Graph&lt;/code&gt; impl looks:&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-rust&#34; data-lang=&#34;rust&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;impl&lt;/span&gt; Graph {
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;pub&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;fn&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;new&lt;/span&gt;() -&amp;gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;Self&lt;/span&gt; {
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        Self {
